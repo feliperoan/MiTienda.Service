@@ -30,9 +30,11 @@ namespace miTienda.Infrastructure
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByIdAsync(string id)
+        public async Task<User> GetByIdAsync(string id )
         {
-            throw new NotImplementedException();
+            var filter = Builders<User>.Filter.Eq( "_id", id );
+            var result = await _collection.FindAsync(filter);
+            return result.First();
         }
 
         public Task<User> GetByNameAsync(string name)

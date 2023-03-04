@@ -14,17 +14,24 @@ namespace miTienda.Controllers
         public UserController(IUserService userService)
         {
             this.userService= userService;
+
         }
-        [HttpGet(Name = "getuserlist")]
-        public List<User> GetUsers()
+        //[HttpGet(Name = "getuserlist")]
+        /* public List<User> GetUsers()
         {
             return users; // Consulta en tabla user
-        }
+        }*/
         [HttpPost]
         public async Task<User> CreateUser(User user) {
             var result = await userService.InsertAsync(user);
             users.Add(user); // Inserción en tabla user
             return user;
+        }
+        [HttpGet(Name = "GetByID")]
+        public async Task<User> GetUserByID(string id)
+        {
+            var result = await userService.FindById(id); 
+            return result; // Consulta en tabla user
         }
     }
 }
