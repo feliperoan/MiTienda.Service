@@ -11,15 +11,21 @@ namespace miTienda.Services
             this.userRepository = userRepository;
         }
 
-        public Task<User> FindByEmail(string email)
+        public async Task<User> FindByEmail(string email)
         {
-            throw new NotImplementedException();
+            var result = await userRepository.GetByEmailAsync(email);
+            return result;
         }
 
         public async Task<User> FindById(string id)
         {
             var result = await userRepository.GetByIdAsync(id);
             return result;
+        }
+
+        public Task<List<User>> GetAllUsers()
+        {
+            return userRepository.GetAllUsers();
         }
 
         public async Task<User> InsertAsync(User entity)

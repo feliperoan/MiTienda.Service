@@ -9,29 +9,40 @@ namespace miTienda.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        public  static List<User> users = new List<User>();
         private readonly IUserService userService;
         public UserController(IUserService userService)
         {
             this.userService= userService;
 
         }
-        //[HttpGet(Name = "getuserlist")]
-        /* public List<User> GetUsers()
+        [HttpGet("~/GetUsers")]
+        public async Task<List<User>> GetUsers()
         {
-            return users; // Consulta en tabla user
-        }*/
+            var listUsers = await  userService.GetAllUsers();
+            return listUsers; 
+        }
         [HttpPost]
         public async Task<User> CreateUser(User user) {
             var result = await userService.InsertAsync(user);
-            users.Add(user); // Inserción en tabla user
             return user;
         }
-        [HttpGet(Name = "GetByID")]
+        [HttpGet("~/GetUserByID")]
         public async Task<User> GetUserByID(string id)
         {
             var result = await userService.FindById(id); 
-            return result; // Consulta en tabla user
+            return result; 
+        }
+        [HttpGet("~/GetUserByEmail")]
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var result = await userService.FindByEmail(email); 
+            return result; 
+        }
+        [HttpDelete("~/DeleteById")]
+        public async Task<User> DeleteById(string id)
+        {
+            var result = await userService.FindById(id); 
+            return result; 
         }
     }
 }
