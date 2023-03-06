@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using miTienda.Interfaces;
-using miTienda.Models;
-using miTienda.Services;
+using miTienda.Domain.Interfaces;
+using miTienda.Domain.Models;
 
 namespace miTienda.Controllers
 {

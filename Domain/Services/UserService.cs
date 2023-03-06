@@ -1,37 +1,40 @@
-﻿using miTienda.Interfaces;
-using miTienda.Models;
+﻿using miTienda.Domain.Interfaces;
+using miTienda.Domain.Models;
 
-namespace miTienda.Services
+namespace miTienda.Domain.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly IUserFinder userFinder;
+        public UserService(IUserRepository userRepository, IUserFinder userFinder)
         {
             this.userRepository = userRepository;
+            this.userFinder = userFinder;
         }
 
         public async Task<User> FindByEmail(string email)
         {
-            var result = await userRepository.GetByEmailAsync(email);
+            var result = await userFinder.GetByEmailAsync(email);
             return result;
         }
 
         public async Task<User> FindById(string id)
         {
-            var result = await userRepository.GetByIdAsync(id);
+            var result = await userFinder.GetByIdAsync(id);
             return result;
         }
 
         public Task<List<User>> GetAllUsers()
         {
-            return userRepository.GetAllUsers();
+            return userFinder.GetAllUsers();
         }
 
         public async Task<User> InsertAsync(User entity)
         {
+            //todo if exist 
             var idGnerated = Guid.NewGuid().ToString();
-            entity.Id= idGnerated;
+            entity.Id = idGnerated;
             var result = await userRepository.InsertAsync(entity);
             return result;
         }

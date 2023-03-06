@@ -1,6 +1,6 @@
-﻿using miTienda.Models;
+﻿using miTienda.Domain.Models;
 
-namespace miTienda.Interfaces
+namespace miTienda.Domain.Interfaces
 {
     public interface IUserService
     {

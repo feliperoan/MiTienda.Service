@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace miTienda.Interfaces
+namespace miTienda.Domain.Interfaces
 {
     public interface IMongoDbContext
     {

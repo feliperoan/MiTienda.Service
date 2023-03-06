@@ -1,4 +1,4 @@
-﻿using miTienda.Interfaces;
+﻿using miTienda.Domain.Interfaces;
 using MongoDB.Driver;
 
 namespace miTienda.Infrastructure

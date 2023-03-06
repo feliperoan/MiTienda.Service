@@ -1,4 +1,4 @@
-﻿namespace miTienda.Models
+﻿namespace miTienda.Domain.Models
 {
     public class User
     {
@@ -9,8 +9,8 @@
         public string Username { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }
-        public User( )
-        {}
+        public User()
+        { }
 
     }
 }

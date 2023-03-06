@@ -1,8 +1,9 @@
 using Microsoft.OpenApi.Models;
+using miTienda.Domain.Interfaces;
+using miTienda.Domain.Services;
 using miTienda.Infrastructure;
+using miTienda.Infrastructure.Finders;
 using miTienda.Infrastructure.Repositories;
-using miTienda.Interfaces;
-using miTienda.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IUserFinder, UserFinder>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
